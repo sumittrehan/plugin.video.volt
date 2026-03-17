@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.volt"
+       name="Volt"
+       version="0.0.1"
+       provider-name="sumittrehan">
+
+    <requires>
+        <!-- Kodi 21 Omega requires Python 3 -->
+        <import addon="xbmc.python" version="3.0.0"/>
+
+        <!-- HTTP requests library -->
+        <import addon="script.module.requests" version="2.22.0"/>
+
+        <!-- External scraper — CocoScrapers -->
+        <import addon="script.module.cocoscrapers" optional="true"/>
+
+        <!-- External scraper — Magneto -->
+        <import addon="script.module.magneto" optional="true"/>
+
+    </requires>
+
+    <!-- This is a video plugin -->
+    <extension point="xbmc.python.pluginsource"
+               library="default.py">
+        <provides>video</provides>
+    </extension>
+
+    <!-- Metadata about the addon -->
+    <extension point="xbmc.addon.metadata">
+        <summary lang="en_GB">Volt — Fast streaming via Real-Debrid</summary>
+        <description lang="en_GB">
+            Stream movies and TV shows via Real-Debrid.
+            Powered by Trakt for discovery and progress tracking.
+        </description>
+        <disclaimer lang="en_GB">
+            For personal use only.
+            Volt does not host any content.
+        </disclaimer>
+        <language/>
+        <platform>all</platform>
+        <license>GPL-3.0-only</license>
+        <forum/>
+        <website/>
+        <source>https://github.com/sumittrehan/plugin.video.volt</source>
+        <news>
+            v0.0.1 — Initial structure
+        </news>
+    </extension>
+
+</addon>
