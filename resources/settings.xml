@@ -1,0 +1,24 @@
+<settings>
+    <category label="RealDebrid">
+        <setting id="realdebrid_token" type="text" label="Real-Debrid Token" default="" />
+        <setting id="realdebrid_enabled" type="bool" label="Enable Real-Debrid" default="true" />
+    </category>
+
+    <category label="Trakt">
+        <setting id="trakt_client_id" type="text" label="Trakt Client ID" default="" />
+        <setting id="trakt_client_secret" type="text" label="Trakt Client Secret" default="" />
+        <setting id="trakt_access_token" type="text" label="Trakt Access Token" default="" hidden="true" />
+        <setting id="trakt_refresh_token" type="text" label="Trakt Refresh Token" default="" hidden="true" />
+        <setting id="trakt_token_expires" type="text" label="Trakt Token Expire Time" default="0" hidden="true" />
+    </category>
+
+    <category label="Providers">
+        <setting id="provider_coco_enabled" type="bool" label="Enable Coco Provider" default="true" />
+        <setting id="provider_magneto_enabled" type="bool" label="Enable Magneto Provider" default="true" />
+        <setting id="preferred_quality" type="enum" label="Preferred Quality" values="4K|1080p|720p|SD" default="1080p" />
+    </category>
+
+    <category label="Widget">
+        <setting id="widget_enabled" type="bool" label="Enable Kodi widget endpoints" default="true" />
+    </category>
+</settings>

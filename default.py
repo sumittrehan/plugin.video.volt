@@ -38,12 +38,38 @@ def router(params):
         search_movies()
 
     elif action == 'movies_play':
-        from resources.lib.ui.player import play_movie
-        play_movie(
+        from resources.lib.ui.movies import show_movie_sources
+        show_movie_sources(
             tmdb_id=params.get('tmdb_id'),
             imdb_id=params.get('imdb_id'),
             title=params.get('title'),
-            year=params.get('year')
+            year=params.get('year'),
+            resume_seconds=int(params.get('resume_seconds') or 0)
+        )
+
+    elif action == 'shows_play':
+        from resources.lib.ui.shows import show_episode_sources
+        show_episode_sources(
+            tmdb_id=params.get('tmdb_id'),
+            imdb_id=params.get('imdb_id'),
+            title=params.get('title'),
+            season=params.get('season'),
+            episode=params.get('episode'),
+            resume_seconds=int(params.get('resume_seconds') or 0)
+        )
+
+    elif action == 'play_source':
+        from resources.lib.ui.player import play_source
+        play_source(
+            tmdb_id=params.get('tmdb_id'),
+            imdb_id=params.get('imdb_id'),
+            title=params.get('title'),
+            year=params.get('year'),
+            season=params.get('season'),
+            episode=params.get('episode'),
+            source_url=params.get('source_url'),
+            media_type=params.get('media_type'),
+            resume_seconds=int(params.get('resume_seconds') or 0)
         )
 
     # ── TV Shows ─────────────────────────────────────────────
@@ -76,15 +102,6 @@ def router(params):
             season=params.get('season')
         )
 
-    elif action == 'shows_play':
-        from resources.lib.ui.player import play_episode
-        play_episode(
-            tmdb_id=params.get('tmdb_id'),
-            imdb_id=params.get('imdb_id'),
-            title=params.get('title'),
-            season=params.get('season'),
-            episode=params.get('episode')
-        )
 
     # ── Trakt ────────────────────────────────────────────────
     elif action == 'trakt_watchlist_movies':
@@ -100,8 +117,29 @@ def router(params):
         show_continue_watching()
 
     elif action == 'trakt_auth':
-        from resources.lib.services.trakt import TraktService
+        from resources.lib.services.trakt_service import TraktService
         TraktService().authenticate()
+
+    # ── widget support for skins (Nimbus/Arctic etc.)
+    elif action == 'widget_trakt_inprogress_movies':
+        from resources.lib.ui.widgets import show_widget_inprogress_movies
+        show_widget_inprogress_movies()
+
+    elif action == 'widget_trakt_inprogress_shows':
+        from resources.lib.ui.widgets import show_widget_inprogress_shows
+        show_widget_inprogress_shows()
+
+    elif action == 'widget_trakt_recommendations':
+        from resources.lib.ui.widgets import show_widget_recommendations
+        show_widget_recommendations()
+
+    elif action == 'widget_trakt_trending':
+        from resources.lib.ui.widgets import show_widget_trending
+        show_widget_trending()
+
+    elif action == 'widget_trakt_popular':
+        from resources.lib.ui.widgets import show_widget_popular
+        show_widget_popular()
 
     # ── Settings ─────────────────────────────────────────────
     elif action == 'open_settings':
@@ -120,7 +158,7 @@ def router(params):
 
 
 # ── Entry Point ──────────────────────────────────────────────────
-if _name_ == '_main_':
+if __name__ == '__main__':
     # Parse URL parameters and route
     params = dict(parse_qsl(urlparse(sys.argv[2]).query))
     router(params)
